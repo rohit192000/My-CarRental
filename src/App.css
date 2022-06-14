@@ -1,0 +1,25 @@
+.ac
+{
+  color: rgb(175, 199, 199);
+}
+.link
+{
+  text-decoration: none !important;
+  color: white !important;
+
+}
+.dash-card{
+  min-height:100px !important;
+  background-color:#16a5d0 !important;
+  text-align:center !important;
+  border-radius:10px !important;
+  padding:15px !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.white{
+  color: white;
+}
+
