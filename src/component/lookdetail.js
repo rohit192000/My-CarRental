@@ -1,74 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import Usernavbar from './usernavbar';
-import { Grid, CardContent, Typography, TextField, Button } from '@material-ui/core';
-import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
-import firebase from 'firebase';
-import { db } from '../firebase';
+import { Grid, CardContent, Typography, TextField, Button, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
+import {db} from '../firebase';
 import { useNavigate } from 'react-router-dom';
-
-
 const Lookdetail = () => {
-
   const navi = useNavigate();
-
   const user = localStorage.getItem('user');
   if (user == null) {
     navi('/');
   }
-  // function Logout() {
-  //   localStorage.removeItem('user');
-  //   navi('/');
-  // }
-
-
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const car = urlParams.get('id');
   if (car == null) {
     navi('/home');
   }
-
-
-  // const [mycar, getMycar] = useState([]);
-  const [Image, setImage] = useState();
-  const [Name, setName] = useState();
-  const [variant, setvariant] = useState();
-  const [Number, setNumber] = useState();
-  const [Color, setColor] = useState();
-  const [Price, setPrice] = useState();
-  const [Category, setCategory] = useState();
-  const [Type, setType] = useState();
-  const [Booking_Status, setBookingStatus] = useState();
-  const [BookedDates, setDates] = useState();
-
+  const [carData, setCarData] = useState({
+    Image:"",
+    Name:"",
+    variant:"",
+    Number:"",
+    Color:"",
+    Price:"",
+    Category:"",
+    Type:"",
+    Booking_Status:"",
+    BookedDates:""
+  });
   function seemycar() {
     db.collection('addcar').doc(car).get().then(function (query) {
-      setImage(query.data().Image);
-      setName(query.data().Name);
-      setvariant(query.data().Variant);
-      setNumber(query.data().Number);
-      setColor(query.data().Color);
-      setPrice(query.data().Price);
-      setCategory(query.data().Category);
-      setType(query.data().Type);
-      setDates(query.data().Booked_dates);
-      setBookingStatus(query.data().Booking_Status);
+      setCarData((carData) => ({
+        ...carData,
+        Image: query.data().Image,
+        Name: query.data().Name,
+        variant: query.data().Variant,
+        Number: query.data().Number,
+        Color: query.data().Color,
+        Price: query.data().Price,
+        Category: query.data().Category,
+        Type: query.data().Type,
+        BookedDates: query.data().Booked_dates,
+        Booking_Status: query.data().Booking_Status,
+      }))
     })
   }
-
   useEffect(() => {
     seemycar();
-
-  }, []);
-  // const booking = db.collection("booking");
-
+  });
   const Bookings = (e) => {
     e.preventDefault();
     let data = new FormData(e.currentTarget);
-
-
     let batch = db.batch();
-
     let username = data.get('username');
     let age = data.get('age');
     let phone = data.get('phone');
@@ -82,7 +64,6 @@ const Lookdetail = () => {
     let phoneval = /^([5-9][0-9]{9})$/
     let emailval = /^([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4})$/
     let dt = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate());
-
     // logic starting for adding booking dtaes in a databases.
     const start = new Date(pickup_date);
     const end = new Date(drop_date);
@@ -93,16 +74,13 @@ const Lookdetail = () => {
       temp.setDate(start.getDate() + i);
       arr.push(temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear());
     }
-    var arvv = BookedDates.concat(arr);
+    var arvv = carData.BookedDates.concat(arr);
     console.log(arvv);
     // conditions checking starts for booking
     if ((new Date(dt) < new Date(pickup_date)) && (new Date(drop_date) > new Date(pickup_date))) {
       // console.log(username + " " + age + " " + phone + email + " " + pickup_location + " " + drop_location + " " + pickup_date + " " + drop_date);
-
       if (username === '' || age === '' || phone === '' || email === '' || pickup_location === '' || drop_location === '' || pickup_date === '' || drop_date === '') {
-
         alert('Please fill all the details');
-
       } else if (!nameval.test(username)) {
         alert('Please fill name of minimum 3 characters')
       } else if (!ageval.test(age) && age >= 20) {
@@ -120,7 +98,7 @@ const Lookdetail = () => {
             alert("Sorry These days are already Booked");
           } else {
             let rff = db.collection('signup').doc(user);
-            let upd = firebase.firestore.FieldValue.increment(1);
+            let upd = db.FieldValue.increment(1);
             batch.update(rff, { 'booking': upd });
             db.collection('addcar').doc(car).get().then(function (query) {
               let bk = db.collection("booking").doc();
@@ -148,10 +126,10 @@ const Lookdetail = () => {
                 DropDate: drop_date,
                 Driver_Assigned: 'No',
                 Booked_Dates: arr,
-                RegDate: firebase.firestore.Timestamp.now()
+                RegDate: db.Timestamp.now()
               })
               batch.update(car, {
-                Booked_dates: arvv,
+                // Booked_dates: arvv,
                 Booking_Status: 'Yes'
               })
               batch.commit().then(function () {
@@ -183,44 +161,24 @@ const Lookdetail = () => {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
-
-  // const Booked = () => {
-  //   db.collection('addcar').doc().onSnapshot((succ) => {
-  //     succ.forEach((succc) => {
-  //       let status = succc.data().Status;
-  //       if(status == 1){
-
-  //       }
-  //     });
-  //   })
-  // }
-
-
   return (
-
-    <div>
+    <>
       <Usernavbar />
-
-
-
       <Grid container style={{ marginTop: '65px' }} >
         <Grid item lg={6} xs={12} style={{ textAlign: 'center' }}>
-          <img style={{ width: '80%' }} id='img' src={Image} alt='' />
-          <Typography variant='h3' id='name' style={{ fontFamily: 'timesnewroman' }}>{Name}</Typography>
-          <Typography variant='h6'> Category : <span id='Category'></span>{Category}</Typography>
-          <Typography id='variant'>Brand : <span id='Category'>{variant}</span></Typography>
-          <Typography id='carno'>Reg. No. : <span>{Number}</span></Typography>
-          <Typography>Color: <span id='color'>{Color}</span></Typography>
-          <Typography>Car Type : <span id='Type'>{Type}</span></Typography>
-          <Typography>Charges: Rs.<span id='charge'>{Price}</span>/km</Typography>
-          <Typography>Booking Status: <span id='charge'>{Booking_Status}</span></Typography>
+          <img style={{ width: '80%' }} id='img' src={carData.Image} alt='' />
+          <Typography variant='h3' id='name' style={{ fontFamily: 'timesnewroman' }}>{carData.Name}</Typography>
+          <Typography variant='h6'> Category : <span id='Category'></span>{carData.Category}</Typography>
+          <Typography id='variant'>Brand : <span id='Category'>{carData.variant}</span></Typography>
+          <Typography id='carno'>Reg. No. : <span>{carData.Number}</span></Typography>
+          <Typography>Color: <span id='color'>{carData.Color}</span></Typography>
+          <Typography>Car Type : <span id='Type'>{carData.Type}</span></Typography>
+          <Typography>Charges: Rs.<span id='charge'>{carData.Price}</span>/km</Typography>
+          <Typography>Booking Status: <span id='charge'>{carData.Booking_Status}</span></Typography>
         </Grid>
-
         <Grid item lg={6} xs={6} style={{ backgroundColor: 'rgb(233, 232, 232)', paddingTop: '20px', minHeight: '93vh' }}>
           <Typography variant='h4' style={{ textAlign: 'center', fontFamily: 'gabriola', fontWeight: '700' }}>Enter details to book now..!</Typography>
           <form onSubmit={Bookings}>
-
             <CardContent>
               <TextField fullWidth variant="outlined" className="form-control" name="username" label="Enter name" type="text"></TextField>
             </CardContent>
@@ -233,8 +191,6 @@ const Lookdetail = () => {
             <CardContent>
               <TextField fullWidth variant="outlined" className="form-control" name="email" label=" Enter email" type="email"></TextField>
             </CardContent>
-
-
             <CardContent>
               <FormControl component="fieldset">
                 <FormLabel component="legend">Option</FormLabel>
@@ -250,16 +206,12 @@ const Lookdetail = () => {
                 </RadioGroup>
               </FormControl>
             </CardContent>
-
             <CardContent>
               <TextField fullWidth variant="outlined" className="form-control" name="pickup_location" label=" Pickup Location" type="text"></TextField>
             </CardContent>
-
             <CardContent>
               <TextField fullWidth variant="outlined" className="form-control" name="drop_location" label=" Drop Location" type="text"></TextField>
             </CardContent>
-
-
             <CardContent>
               <TextField style={{ width: '98%' }} variant="outlined"
                 name="pickup_date"
@@ -270,7 +222,6 @@ const Lookdetail = () => {
                 }}
               />
             </CardContent>
-
             <CardContent>
               <TextField style={{ width: '98%' }} variant="outlined"
                 name="drop_date"
@@ -281,28 +232,13 @@ const Lookdetail = () => {
                 }}
               />
             </CardContent>
-
-            {/* {Booking_Status === 'no' && (<> */}
             <CardContent>
               <Button type='submit' style={{ backgroundColor: 'rgb(153, 3, 3)', width: '100%', color: 'white' }}>book now</Button>
             </CardContent>
-            {/* </>)} */}
           </form>
-
-
         </Grid>
-
-
       </Grid>
-
-
-    </div>
-
-
-
-
-
+    </>
   )
 }
-
 export default Lookdetail;
