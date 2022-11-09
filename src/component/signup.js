@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@material-ui/core';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { db } from '../firebase';
 import firebase from 'firebase';
 import imgbackground from './image/carbg2.jpg';
@@ -94,9 +94,9 @@ const Signup = () => {
   const verifyOtp = (e) => {
     e.preventDefault();
     var data = new FormData(e.currentTarget);
-    var OTP = data.get('verifyy6_otp');
+    var OTP = data.get('verify_otp');
     // console.log(OTPData);
-    var id = localStorage.getItem('UID');
+    var id = localStorage.getItem('user');
     OTPData.confirm(OTP).then((result) => {
       alert("Correct Otp");
       // query for updating the staus of user 
@@ -174,7 +174,7 @@ const Signup = () => {
                         <input style={{height:'35px', width:'200px', backgroundColor:'rgb(85, 57, 85)', color:'white', fontSize:'18px', borderRadius:'10px'}} type="submit" value="Submit"  />
                         </center> */}
               </CardContent>
-              <Typography variant="subtitle2" style={{ textAlign: 'center', paddingBottom: '10px' }}>Already have a account? <Link style={{ textDecoration: 'none', color: 'blue' }} className="nav-item" to="/"> Login</Link></Typography>
+              {/* <Typography variant="subtitle2" style={{ textAlign: 'center', paddingBottom: '10px' }}>Already have a account? <Link style={{ textDecoration: 'none', color: 'blue' }} className="nav-item" to="/"> Login</Link></Typography> */}
             </form>
             </>
             ) : (<>

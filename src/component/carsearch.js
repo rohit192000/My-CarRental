@@ -19,15 +19,15 @@ const Carsearch = () => {
 
     function getcars(search) {
         // const search = document.getElementById('search').value;
-        const type = document.getElementById('type').value;
+        // const type = document.getElementById('type').value;
         var cars = '';
         if (search != '' && search) {
             const searchname = search.split('');
             cars = db.collection('addcar').where('keyword', 'array-contains-any', searchname);
             console.log(searchname);
-        } else if (type != '') {
-            cars = db.collection('addcar').where('Category', '>=', type);
-            console.log(type);
+        // } else if (type != '') {
+        //     cars = db.collection('addcar').where('Category', '>=', type);
+        //     console.log(type);
         } else {
             cars = db.collection("addcar");
             console.log(search);
@@ -60,11 +60,11 @@ const Carsearch = () => {
                 <br />
                 <TextField size='small' variant='outlined' style={{ width: '20%' }} label=" Search your car name here..!" onKeyUp={(e) => getcars(e.target.value)} id='search' />
                 &nbsp;&nbsp;
-                <select style={{ backgroundColor: 'rgb(207, 203, 203)', color: 'rgb(61, 60, 60)', height: '40px', width: '20%', border: 'none', borderRadius: '5px' }} onChange={getcars} id='type'>
+                {/* <select style={{ backgroundColor: 'rgb(207, 203, 203)', color: 'rgb(61, 60, 60)', height: '40px', width: '20%', border: 'none', borderRadius: '5px' }} onChange={getcars} id='type'>
                     <option style={{ fontWeight: '100px', background: 'white' }} value=''>Choose Type</option>
                     <option style={{ fontWeight: '100px', background: 'white' }} value='Rent Go'>GO Cars</option>
                     <option style={{ fontWeight: '100px', background: 'white' }} value='Rent Premier'>Premium Cars</option>
-                </select>
+                </select> */}
             </div>
 
             <Grid container style={{ backgroundColor: 'white', paddingTop: '30px', paddingBottom: '30px', paddingLeft: '60px', paddingRight: '60px' }}>
@@ -74,7 +74,7 @@ const Carsearch = () => {
                             <Card>
                                 <CardActionArea>
                                     <CardMedia style={{ height: '180px', overflow: 'hidden' }}>
-                                        <img style={{ width: '100%' }} src={row.data().Image} />
+                                        <img style={{ width: '50%' }} src={row.data().Image} alt={row.data().name} />
                                     </CardMedia>
                                     <CardContent>
                                         <Typography variant='h5'>{row.data().Name}</Typography>

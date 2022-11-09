@@ -25,7 +25,7 @@ const Viewbookingadmin = () => {
 
 
   const [users, setUsers] = useState([]);
-  const [userss, setUserss] = useState([]);
+  // const [userss, setUserss] = useState([]);
 
   const booking = db.collection("booking");
 
@@ -33,19 +33,19 @@ const Viewbookingadmin = () => {
   // for checking if user chooses self-drive or driver.
   const [MyDriver, setMyDriver] = useState('');
 
-  const [alldates, setalldates] = useState([]);
+  // const [alldates, setalldates] = useState([]);
 
   function getUsers() {
     booking.doc(id).get().then((doc) => {
       const item = [];
       const items = [];
       setMyDriver(doc.data().Driver);
-      if (doc.data().Status == 'yes') {
+      if (doc.data().Status === 'yes') {
         console.log(doc);
         setdriverss(false);
         items.push(doc);
       }
-      setalldates(doc.data().Booked_Dates);
+      // setalldates(doc.data().Booked_Dates);
       // querySnapshot.forEach((doc) =>{
       // console.log(doc.data().RegDate.toDate().toDateString());
       item.push(doc);
@@ -77,7 +77,7 @@ const Viewbookingadmin = () => {
 
       // })
       setUsers(item);
-      setUserss(items);
+      // setUserss(items);
     })
 
   }
@@ -85,7 +85,7 @@ const Viewbookingadmin = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
 
   const useStyles = makeStyles((theme) => ({
@@ -175,7 +175,7 @@ const Viewbookingadmin = () => {
 
   useEffect(() => {
     getDriver();
-  }, []);
+  });
 
 
 
@@ -241,7 +241,7 @@ const Viewbookingadmin = () => {
         <Grid item xs={4}>
           <CardContent>
 
-            {MyDriver != 'selfdrive' && (
+            {MyDriver !== 'selfdrive' && (
               <>
 
 

@@ -3,7 +3,7 @@ import Usernavbar from './usernavbar';
 import {Typography, Button, Paper, Grid, Card, CardContent} from '@material-ui/core';
 import image1 from './image/nee.jpg';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 const Confirm =() =>{
 var path=useNavigate();
     const token = localStorage.getItem('token');
@@ -43,8 +43,8 @@ var path=useNavigate();
                       <CardContent>
                       <center><DriveEtaIcon style={{zoom:1.5, color:'lightgreen'}} /></center>
                       <Typography variant="h6">Congratulations your Car has been Booked</Typography>
-                      <Button variant='contained' color='primary'><Link to='/myorder' style={{textDecoration:'none', color:'white'}}>View Car Status</Link></Button>&nbsp;&nbsp;
-                      <Button variant='contained' color='secondary'><Link to='/carsearch' style={{textDecoration:'none', color:'white'}}>Book New Car</Link></Button>
+                      {/* <Button variant='contained' color='primary'><Link to='/myorder' style={{textDecoration:'none', color:'white'}}>View Car Status</Link></Button>&nbsp;&nbsp;
+                      <Button variant='contained' color='secondary'><Link to='/carsearch' style={{textDecoration:'none', color:'white'}}>Book New Car</Link></Button> */}
                       </CardContent>
                   </Card>
               </Grid>

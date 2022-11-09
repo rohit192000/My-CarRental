@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 // import Usernavbar from './usernavbar';
-import {Paper, Grid, Typography, TextField} from '@material-ui/core';
-import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button, Avatar} from '@material-ui/core';
+import {Grid, Typography} from '@material-ui/core';
 import { db } from '../firebase';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
 import imgbackground from './image/nee.jpg';
 
@@ -66,30 +59,30 @@ const Viewbookingdriver = ()=> {
   
     useEffect(() => {
       getUsers();
-    }, []);
+    });
   
 
-    const useStyles = makeStyles((theme) => ({
-        formControl: {
-          margin: theme.spacing(0),
-          minWidth: 120,
-        },
-        selectEmpty: {
-          marginTop: theme.spacing(2),
-        },
-      }));
+    // const useStyles = makeStyles((theme) => ({
+    //     formControl: {
+    //       margin: theme.spacing(0),
+    //       minWidth: 120,
+    //     },
+    //     selectEmpty: {
+    //       marginTop: theme.spacing(2),
+    //     },
+    //   }));
       
 
 
 
-    const classes = useStyles();
+    // const classes = useStyles();
     // function ViewDetail(x) {
     //   window.location.href='';
     // }
   
 
 
-    const [driver, setDriver] = useState([]);
+    // const [driver, setDriver] = useState([]);
 
     const adddriver = db.collection("adddriver");
   
@@ -99,24 +92,24 @@ const Viewbookingdriver = ()=> {
         querySnapshot.forEach((doc) =>{
           item.push(doc);
         })
-        setDriver(item);
+        // setDriver(item);
       })
     }
   
-    function assigndriver(){
+    // function assigndriver(){
 
-      let kms = document.getElementById('km').value;
-      let days = document.getElementById('day').value;
-      let amounts = document.getElementById('amount').value;
+    //   let kms = document.getElementById('km').value;
+    //   let days = document.getElementById('day').value;
+    //   let amounts = document.getElementById('amount').value;
 
-      console.log(kms+days+amounts);
+    //   console.log(kms+days+amounts);
 
         
-    }
+    // }
   
     useEffect(() => {
         getDriver();
-      }, []);
+      });
     
 
 

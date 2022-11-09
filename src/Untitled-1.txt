@@ -1,0 +1,4 @@
+lg : max 1366px mostly works on laptops
+md : 950px mostly work on tablets
+sm : 768px works on smartphones like realme xiaomi
+xs : 550px works on mobile screen 4-5 inch  

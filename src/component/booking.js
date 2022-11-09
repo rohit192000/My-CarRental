@@ -79,7 +79,7 @@ const Booking = () => {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  });
 
   function deleteUser(x) {
     booking.doc(x).delete().then(function (success) {

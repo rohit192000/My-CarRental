@@ -177,7 +177,19 @@ export default function Carlist() {
       alert("e.g PB 10 JK 2345");
     }
     else {
-
+      let ar_name = name.split('');
+      let new_ar = [];
+      for(let i = 0; i<ar_name.length; i++){
+        const element = ar_name[i];
+        console.log(ar_name[i]);
+        var new_ar2 = [];
+        for(let j = 1; j <= element.length; j++){
+          const sub_element = element.slice(0,j);
+          new_ar2.push(sub_element);
+        }
+        new_ar.push(new_ar2);
+      }
+      let filter_arr = new_ar.flat(Infinity);
       const ref = storageref.ref()
       var x = Math.floor((Math.random() * 1000000) + 1);
       const file = document.querySelector("#image").files[0]
@@ -198,6 +210,7 @@ export default function Carlist() {
             Number: number,
             Price: price,
             Booking_Status: 'No',
+            keyword: filter_arr,
             Image: url,
             date: firebase.firestore.Timestamp.now()
           }).then(function (success) {
@@ -224,11 +237,6 @@ export default function Carlist() {
     let price = data.get('price');
     // var regnoval = /^([A-Z|a-z]{2}\s{1}\d{2}\s{1}[A-Z|a-z]{1,2}\s{1}\d{1,4})?([A-Z|a-z]{3}\s{1}\d{1,4})?$/
     let regnoval = /^[A-Z]{2}[ ][0-9]{2}[ ][A-Z]{2}[ ][0-9]{4}$/
-    let ar = [];
-    for (let i = 0; i <= name.length; i++)
-    {
-      ar.push(name.split(''));
-    }
 
 
     if (name === '' || variant === '' || seat === '' || color === '' || number === '' || price === '') {
@@ -246,7 +254,6 @@ export default function Carlist() {
         Color: color,
         Number: number,
         Price: price,
-        Keyword: ar,
         date: firebase.firestore.Timestamp.now()
       }).then(function (success) {
         alert('Data is updated successfully');

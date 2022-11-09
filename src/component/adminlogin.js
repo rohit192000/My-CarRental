@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, Grid, CardContent, Button, TextField, Typography, Checkbox } from '@material-ui/core';
+import { Paper, Grid, CardContent, Button, TextField, Typography } from '@material-ui/core';
 import { db } from '../firebase';
 import firebase from 'firebase';
 
 import imgbackground from './image/ccw.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 
 
-function Adminlogin() {
+const Adminlogin = () => {
 
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
   const adminlogin = db.collection("Admin");
 
@@ -20,7 +20,7 @@ function Adminlogin() {
       querySnapshot.forEach((doc) => {
         item.push(doc);
       })
-      setUsers(item);
+      // setUsers(item);
     })
   }
 
@@ -28,14 +28,12 @@ function Adminlogin() {
 
   useEffect(() => {
     getUsers();
-  }, []);
-
+  });
   const [OTPData, setOTPData] = useState();
   const [otp, setCheckOTP] = useState(false);
   function Submitlogin(e) {
     e.preventDefault();
     var data = new FormData(e.currentTarget);
-    // alert('hi');
     let email = data.get('emailid');
     let password = data.get('passwordid');
 
@@ -128,12 +126,6 @@ function Adminlogin() {
         </Grid>
       </Paper>
     </div>
-
-
-
-
-
-
   )
 }
 

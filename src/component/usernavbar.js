@@ -1,40 +1,45 @@
-import React, {Component} from 'react';
-import {AppBar, Toolbar, Typography, Button, ButtonGroup } from '@material-ui/core';
-import {BrowserRouter as Router, Route, Link, useNavigate} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { AppBar, Toolbar, Typography, Button, ButtonGroup } from '@material-ui/core';
+import { useNavigate } from 'react-router';
+import { Link } from '@material-ui/core';
 
 
 
-const Usernavbar = ()=> {
-var path=useNavigate();
+const Usernavbar = () => {
+    var navi = useNavigate();
     const user = localStorage.getItem('user');
-    if(user == null)
-    {
-        path('/');
+    
+
+    function Logout() {
+        localStorage.removeItem('user');
+        navi('/');
     }
 
-function Logout(){
-    localStorage.removeItem('user');
-    path('/');
+
+useEffect(()=>{
+if(!user){
+   return navi("/")
 }
+},[])
 
-    return(
+    return (
+        <>
+            <AppBar style={{ backgroundColor: 'rgb(3, 70, 70)' }}>
+                <Toolbar>
+                    <Typography variant="h3" style={{ flexGrow: 1, fontFamily: 'gabriola' }}>Rent-a-Ride</Typography>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/home') }} >Home</Link></Button>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/about') }}>About</Link></Button>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/carsearch') }}>Our Cars</Link></Button>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/myorder') }}>my bookings</Link></Button>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/userdetail') }}>User detail</Link></Button>
+                    <Button color="inherit" ><Link style={{ textDecoration: 'none', color: 'white' }} className="nav-item" onClick={() => { navi('/contact') }}>Contact</Link></Button>
+                    <Button color="inherit" onClick={Logout} >Logout</Button>
 
-        <AppBar style={{backgroundColor: 'rgb(3, 70, 70)'}}>
-        <Toolbar>
-        <Typography variant="h3" style={{ flexGrow:1, fontFamily:'gabriola'}}>Rent-a-Ride</Typography>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/home">Home</Link></Button>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/about">About</Link></Button>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/carsearch">Our Cars</Link></Button>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/myorder">my bookings</Link></Button>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/userdetail">User detail</Link></Button>
-        <Button color="inherit" ><Link style={{textDecoration:'none',color:'white'}} className="nav-item" to="/contact">Contact</Link></Button>
-        <Button color="inherit" onClick={Logout} >Logout</Button>
 
+                </Toolbar>
 
-        </Toolbar>
-
-</AppBar>
-
+            </AppBar>
+        </>
     )
 }
 export default Usernavbar;
