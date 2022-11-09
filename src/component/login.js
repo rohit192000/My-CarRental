@@ -1,16 +1,14 @@
 import React from 'react';
-import { Paper, Grid, CardContent, Button, TextField, Typography,Link} from '@material-ui/core';
+import { Paper, Grid, CardContent, Button, TextField, Typography, Link } from '@material-ui/core';
 import { useNavigate } from 'react-router';
 import { db } from '../firebase';
 import imgbackground from './image/carbg2.jpg';
-
-function Login() {
+const Login = () => {
   const loginuser = db.collection('signup');
   var navi = useNavigate();
   function signin(e) {
     e.preventDefault();
     var data = new FormData(e.currentTarget);
-
     let email = data.get('email');
     let password = data.get('password');
     console.log(email);
@@ -29,7 +27,6 @@ function Login() {
             var uid = success.id;
             console.log(uid);
             localStorage.setItem('user', uid);
-            // window.location.href='/home';
             var path = '/home';
             navi(path);
           }
@@ -40,7 +37,7 @@ function Login() {
     }
   }
   return (
-    <div className="App">
+    <>
       <Paper >
         <img style={{ height: '99vh', width: '100%', filter: 'blur(15px)' }} src={imgbackground} alt="" />
         <Grid container style={{ position: 'absolute', top: '22vh' }}>
@@ -61,16 +58,13 @@ function Login() {
               </CardContent>
               <CardContent>
                 <Button type='submit' style={{ backgroundColor: 'rgb(153, 3, 3)', width: '100%', color: 'white' }}><b>Login</b></Button>
-                {/* <center>
-                        <input style={{height:'35px', width:'200px', backgroundColor:'red',border:'none', color:'white', fontSize:'18px', borderRadius:'10px'}} type="submit" value="Login" fullWidth  />
-                        </center> */}
               </CardContent>
               <Typography variant="subtitle2" style={{ textAlign: 'center' }}>Don't have a account? <Link style={{ textDecoration: 'none', color: 'blue' }} className="nav-item" href="/signup"> Sign Up</Link></Typography>
             </form>
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    </>
   )
 }
 
