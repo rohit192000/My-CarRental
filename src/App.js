@@ -32,9 +32,6 @@ import Viewbooking from './component/User/viewbooking';
 import Driverlogin from './component/Driver/driverlogin';
 import Viewbookingdriver from './component/Driver/viewbookingdriver';
 import Driverdb from './component/Driver/driverdb';
-
-import Viewmore from './component/viewmore';
-import Cardetail from './component/cardetail';
 const App = () => {
   return (
     <>
@@ -71,9 +68,6 @@ const App = () => {
           <Route path='/driverdb' element={<Driverdb />} />
           <Route path='/driverlogin' element={<Driverlogin />} />
           <Route path='/viewbookingdriver' element={<Viewbookingdriver />} />
-    
-          <Route path='/cardetail' element={<Cardetail />} />
-          <Route path='/viewmore' element={<Viewmore />} />
         </Routes>
       </Router>
     </>
