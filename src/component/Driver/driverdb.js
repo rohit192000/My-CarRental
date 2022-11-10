@@ -19,10 +19,10 @@ import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
-import { db } from './../firebase';
+import { db } from '../../firebase';
 
 
-import imgbackground from './image/pp.png';
+import imgbackground from '../image/pp.png';
 
 
 const drawerWidth = 300;

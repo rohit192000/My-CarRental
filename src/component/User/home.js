@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Usernavbar from './usernavbar';
 import { useNavigate } from 'react-router-dom';
 import { Container, Paper, Grid, Box} from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
-import bg2 from './image/b2.jpg';
-import img13 from './image/abooo.jpg';
-import img14 from './image/range.jpg';
-import img15 from './image/b5.jpg';
+import bg2 from '../image/b2.jpg';
+import img13 from '../image/abooo.jpg';
+import img14 from '../image/range.jpg';
+import img15 from '../image/b5.jpg';
 
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@material-ui/core';
 
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 
 
 export default function Driver() {

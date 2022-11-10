@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import AdminNavbar from './adminNavbar';
 import { Grid, Typography, ButtonGroup } from '@material-ui/core';
 import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Button } from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 // import { makeStyles } from '@material-ui/core/styles';
-import imgbackground from './image/nee.jpg';
+import imgbackground from '../image/nee.jpg';
 import { useNavigate } from 'react-router-dom';
 
 

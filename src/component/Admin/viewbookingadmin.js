@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AdminNavbar from './adminNavbar';
 import { Grid, Typography } from '@material-ui/core';
 import { TableContainer, Table, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
-import imgbackground from './image/nee.jpg';
+import imgbackground from '../image/nee.jpg';
 
 
 const Viewbookingadmin = () => {

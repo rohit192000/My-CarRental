@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
 import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@material-ui/core';
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 // import './App.css';
 import Usernavbar from './usernavbar';
 

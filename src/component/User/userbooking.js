@@ -3,7 +3,7 @@ import {Paper, Grid, Typography} from '@material-ui/core';
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
 
 
-import imgbackground from './image/nee.jpg';
+import imgbackground from '../image/nee.jpg';
 
 
 const Userbooking = ()=> {

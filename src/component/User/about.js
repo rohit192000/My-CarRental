@@ -1,5 +1,5 @@
 import React from 'react';
-import image1 from './image/b5.jpg';
+import image1 from '../image/b5.jpg';
 import { Grid, Typography, Box } from '@material-ui/core';
 import Usernavbar from './usernavbar';
 import InstagramIcon from '@material-ui/icons/Instagram';

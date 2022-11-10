@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography, Modal} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import imgbackground from './image/bp2.jpg';
-import img1 from './image/pp.png';
+import imgbackground from '../image/bp2.jpg';
+import img1 from '../image/pp.png';
 
 
 

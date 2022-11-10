@@ -1,8 +1,8 @@
 import React from 'react';
 import { Paper, Grid, CardContent, Button, TextField, Typography, Link } from '@material-ui/core';
 import { useNavigate } from 'react-router';
-import { db } from '../firebase';
-import imgbackground from './image/carbg2.jpg';
+import { db } from '../../firebase';
+import imgbackground from '../image/carbg2.jpg';
 const Login = () => {
   const loginuser = db.collection('signup');
   var navi = useNavigate();

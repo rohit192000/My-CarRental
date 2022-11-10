@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Grid, Card, CardContent, Button, TextField, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import imgbackground from './image/carbg2.jpg';
-import { db } from '../firebase';
+import imgbackground from '../image/carbg2.jpg';
+import { db } from '../../firebase';
 import Usernavbar from './usernavbar';
 import Alert from '@material-ui/lab/Alert';
 import { useNavigate } from 'react-router-dom';

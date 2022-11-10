@@ -6,10 +6,10 @@ import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import LocalCarWashIcon from '@material-ui/icons/LocalCarWash';
 import Chart from 'chart.js/auto';
 import { Bar, Bubble, Doughnut, Line, PolarArea, Radar } from 'react-chartjs-2';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import imgg from './image/fb.JPG';
+import imgg from '../image/fb.JPG';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const navi = useNavigate();

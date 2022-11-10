@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Paper, Grid, CardContent, Button, TextField, Typography } from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import firebase from 'firebase';
 
-import imgbackground from './image/ccw.jpg';
+import imgbackground from '../image/ccw.jpg';
 import { useNavigate } from 'react-router';
 
 

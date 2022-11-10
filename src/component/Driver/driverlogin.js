@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Paper, Grid, CardContent, Button, TextField, Typography, Checkbox } from '@material-ui/core';
-import { db } from '../firebase';
-import imgbackground from './image/b5.jpg';
+import { db } from '../../firebase';
+import imgbackground from '../image/b5.jpg';
 import firebase from 'firebase';
 import { useNavigate } from 'react-router-dom';
 export default function Driverlogin() {

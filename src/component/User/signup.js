@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@material-ui/core';
 import { useNavigate} from 'react-router-dom';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import firebase from 'firebase';
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 
 const Signup = () => {
 

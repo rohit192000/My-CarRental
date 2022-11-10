@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@material-ui/core';
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 import Usernavbar from './usernavbar';
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
 

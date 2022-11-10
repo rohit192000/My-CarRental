@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import AdminNavbar from './adminNavbar';
 import {Paper, Button, Grid, Typography} from '@material-ui/core';
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import imgbackground from './image/nee.jpg';
+import imgbackground from '../image/nee.jpg';
 
 
 const Contactinfo = ()=> {

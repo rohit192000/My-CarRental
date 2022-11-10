@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paper, Grid, CardContent, Button, TextField, Typography } from '@material-ui/core';
 
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 
 const details = () => {
 }

@@ -3,9 +3,9 @@ import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typograp
 import { makeStyles } from '@material-ui/core/styles';
 import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@material-ui/core';
 import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
-import imgbackground from './image/carbg2.jpg';
+import imgbackground from '../image/carbg2.jpg';
 // import './App.css';
 import Usernavbar from './usernavbar';
 import { useNavigate } from 'react-router-dom';

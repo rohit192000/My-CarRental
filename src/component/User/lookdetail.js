@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase';
 import Usernavbar from './usernavbar';
 import { Grid, CardContent, Typography, TextField, Button, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
-import {db} from '../firebase';
+import {db} from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 const Lookdetail = () => {
   const navi = useNavigate();

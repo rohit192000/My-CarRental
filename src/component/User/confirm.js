@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Usernavbar from './usernavbar';
 import {Typography, Button, Paper, Grid, Card, CardContent} from '@material-ui/core';
-import image1 from './image/nee.jpg';
+import image1 from '../image/nee.jpg';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import {useNavigate} from 'react-router-dom';
 const Confirm =() =>{

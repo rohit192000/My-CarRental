@@ -5,11 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Typography, Button, Modal, CardContent, TextField, ImageListItem, ImageListItemBar, ImageList, } from '@material-ui/core';
 import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
 import firebase from 'firebase';
-import { db, storageref } from '../firebase';
+import { db, storageref } from '../../firebase';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import imgbackground from './image/nee.jpg';
+import imgbackground from '../image/nee.jpg';
 
 //  This function is used for generating random numbers.
 function rand() {

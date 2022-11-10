@@ -3,7 +3,7 @@ import { Typography, Button } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
 import Usernavbar from './usernavbar';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
