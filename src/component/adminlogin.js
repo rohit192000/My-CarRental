@@ -128,5 +128,4 @@ const Adminlogin = () => {
     </div>
   )
 }
-
 export default Adminlogin;

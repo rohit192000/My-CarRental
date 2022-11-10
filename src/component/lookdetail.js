@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import firebase from 'firebase';
 import Usernavbar from './usernavbar';
 import { Grid, CardContent, Typography, TextField, Button, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
 import {db} from '../firebase';
@@ -27,7 +28,7 @@ const Lookdetail = () => {
     Booking_Status:"",
     BookedDates:""
   });
-  function seemycar() {
+  useEffect(() => {
     db.collection('addcar').doc(car).get().then(function (query) {
       setCarData((carData) => ({
         ...carData,
@@ -43,9 +44,6 @@ const Lookdetail = () => {
         Booking_Status: query.data().Booking_Status,
       }))
     })
-  }
-  useEffect(() => {
-    seemycar();
   });
   const Bookings = (e) => {
     e.preventDefault();
@@ -74,8 +72,8 @@ const Lookdetail = () => {
       temp.setDate(start.getDate() + i);
       arr.push(temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear());
     }
-    var arvv = carData.BookedDates.concat(arr);
-    console.log(arvv);
+    // var arvv = carData.BookedDates.concat(arr);
+    console.log(arr);
     // conditions checking starts for booking
     if ((new Date(dt) < new Date(pickup_date)) && (new Date(drop_date) > new Date(pickup_date))) {
       // console.log(username + " " + age + " " + phone + email + " " + pickup_location + " " + drop_location + " " + pickup_date + " " + drop_date);
@@ -91,14 +89,14 @@ const Lookdetail = () => {
         alert('eg. xyz@gmail.com')
       } else {
         console.log(arr);
-        console.log(Number);
-        db.collection('addcar').where('Number', '==', Number).where("Booked_dates", "array-contains-any", arr).get().then((succ) => {
+        console.log(carData.Number);
+        db.collection('addcar').where('Number', '==', carData.Number).where("Booked_dates", "array-contains-any", arr).get().then((succ) => {
           console.log(succ.size);
           if (succ.size > 0) {
             alert("Sorry These days are already Booked");
           } else {
             let rff = db.collection('signup').doc(user);
-            let upd = db.FieldValue.increment(1);
+            let upd = firebase.firestore.FieldValue.increment(1);
             batch.update(rff, { 'booking': upd });
             db.collection('addcar').doc(car).get().then(function (query) {
               let bk = db.collection("booking").doc();
@@ -126,10 +124,10 @@ const Lookdetail = () => {
                 DropDate: drop_date,
                 Driver_Assigned: 'No',
                 Booked_Dates: arr,
-                RegDate: db.Timestamp.now()
+                RegDate: firebase.firestore.Timestamp.now()
               })
               batch.update(car, {
-                // Booked_dates: arvv,
+                Booked_dates: arr,
                 Booking_Status: 'Yes'
               })
               batch.commit().then(function () {
@@ -149,15 +147,7 @@ const Lookdetail = () => {
       alert("Sorry you can't select previous date");
     }
   }
-
-
-
-  // console.log('yes')
-
-
-
-  const [value, setValue] = React.useState('driver');
-
+  const [value, setValue] = useState('driver');
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -166,21 +156,21 @@ const Lookdetail = () => {
       <Usernavbar />
       <Grid container style={{ marginTop: '65px' }} >
         <Grid item lg={6} xs={12} style={{ textAlign: 'center' }}>
-          <img style={{ width: '80%' }} id='img' src={carData.Image} alt='' />
+          <img style={{ width: '40vw' }} id='img' src={carData.Image} alt='' />
           <Typography variant='h3' id='name' style={{ fontFamily: 'timesnewroman' }}>{carData.Name}</Typography>
-          <Typography variant='h6'> Category : <span id='Category'></span>{carData.Category}</Typography>
-          <Typography id='variant'>Brand : <span id='Category'>{carData.variant}</span></Typography>
-          <Typography id='carno'>Reg. No. : <span>{carData.Number}</span></Typography>
-          <Typography>Color: <span id='color'>{carData.Color}</span></Typography>
-          <Typography>Car Type : <span id='Type'>{carData.Type}</span></Typography>
-          <Typography>Charges: Rs.<span id='charge'>{carData.Price}</span>/km</Typography>
-          <Typography>Booking Status: <span id='charge'>{carData.Booking_Status}</span></Typography>
+          <Typography variant='h6'> Category : {carData.Category}</Typography>
+          <Typography>Brand : {carData.variant}</Typography>
+          <Typography>Reg. No. : {carData.Number}</Typography>
+          <Typography>Color: {carData.Color}</Typography>
+          <Typography>Car Type : {carData.Type}</Typography>
+          <Typography>Charges: Rs. {carData.Price}/km</Typography>
+          <Typography>Booking Status: {carData.Booking_Status}</Typography>
         </Grid>
         <Grid item lg={6} xs={6} style={{ backgroundColor: 'rgb(233, 232, 232)', paddingTop: '20px', minHeight: '93vh' }}>
           <Typography variant='h4' style={{ textAlign: 'center', fontFamily: 'gabriola', fontWeight: '700' }}>Enter details to book now..!</Typography>
           <form onSubmit={Bookings}>
             <CardContent>
-              <TextField fullWidth variant="outlined" className="form-control" name="username" label="Enter name" type="text"></TextField>
+              <TextField fullWidth variant="outlined" className="form-control" name="username" label="Enter name" type="text" onChange={e => e.target.value}></TextField>
             </CardContent>
             <CardContent>
               <TextField fullWidth variant="outlined" className="form-control" name="age" label="Enter age" type="tel"></TextField>
