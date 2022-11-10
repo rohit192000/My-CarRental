@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -93,7 +93,7 @@ const AdminNavbar = () => {
         </Link>
         <List >
           <Divider style={{ backgroundColor: 'white' }} />
-          <Link className='link' onClick={() => { navi('/adminlogin') }}>
+          <Link className='link' onClick={Logout}>
             <ListItemButton >
               <ListItemIcon style={{ color: 'white' }}>
                 <PowerSettingsNew />
@@ -106,6 +106,18 @@ const AdminNavbar = () => {
       </List>
     </div>
   );
+  const Logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('Phone');
+    localStorage.removeItem('UID');
+    navi('/adminlogin');
+  }
+  useEffect(() => {
+    if (!(localStorage.getItem('UID'))) {
+      return navi("/adminlogin")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <>
       <Fragment key='left'>

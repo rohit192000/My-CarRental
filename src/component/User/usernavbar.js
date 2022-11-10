@@ -12,7 +12,8 @@ const Usernavbar = () => {
         if (!user) {
             return navi("/")
         }
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <>
             <AppBar style={{ backgroundColor: 'rgb(3, 130, 170)'}}>
