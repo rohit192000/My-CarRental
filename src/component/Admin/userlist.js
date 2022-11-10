@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from './AdminNavbar';
-import { Paper, Button, Grid, Typography, ButtonGroup } from '@material-ui/core';
-import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
+import { Button, Grid, Typography, ButtonGroup, TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from '@mui/material';
 import { db } from '../../firebase';
-import DeleteIcon from '@material-ui/icons/Delete';
-
+import {Delete, ToggleOff, ToggleOn} from '@mui/icons-material';
 import imgbackground from '../image/nee.jpg';
-import { ToggleOff, ToggleOn } from '@material-ui/icons';
-
-
 const Userlist = () => {
-
-
   const [users, setUsers] = useState([]);
-
   const signup = db.collection("signup");
-
-  function getUsers() {
+  const getUsers = () => {
     signup.onSnapshot((querySnapshot) => {
       const item = [];
       querySnapshot.forEach((doc) => {
@@ -25,37 +16,29 @@ const Userlist = () => {
       setUsers(item);
     })
   }
-
-
   useEffect(() => {
     getUsers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-
-
-  function deleteUser(x) {
+  const deleteUser = (x) => {
     signup.doc(x).delete();
   }
 
-  function deactiveU(x) {
+  const deactiveUser = (x) => {
     db.collection('signup').doc(x).update({
       Status: 0
     })
   }
-
-  function activeU(x) {
+  const activeUser = (x) => {
     db.collection('signup').doc(x).update({
       Status: 1
     })
   }
-
   return (
-    <div>
+    <>
       <AdminNavbar />
-
       <img style={{ height: '99vh', width: '100%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', filter: 'blur(10px)', position: 'fixed', zIndex: '-1' }} src={imgbackground} alt="" />
       <Grid style={{ background: 'rgb(1,1,1,.7)', minHeight: '100vh', width: '100%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', position: 'fixed', top: 0, zIndex: '-1' }}>
-
       </Grid>
       <Grid container style={{ backgroundColor: 'transparent', padding: '0px' }}>
         <Typography variant="h4" style={{ fontFamily: 'gabriola', color: 'white', height: '35px', width: '100%', textAlign: 'center' }}>User List</Typography>
@@ -73,7 +56,6 @@ const Userlist = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-
                 {users.map((userss) => (
                   <TableRow key={userss.id}>
                     <TableCell>{userss.data().Name}</TableCell>
@@ -82,28 +64,22 @@ const Userlist = () => {
                     <TableCell>{userss.data().Password}</TableCell>
                     <TableCell>
                       <ButtonGroup>
-                        <Button size='small' variant='contained' color='primary' onClick={() => deleteUser(userss.id)}><DeleteIcon /></Button>
-                        {userss.data().Status == 0 ? (
-                          <Button size='small' variant='contained' style={{ background: 'green', color: 'white' }} onClick={() => activeU(userss.id)}><ToggleOn /></Button>
+                        <Button size='small' variant='contained' color='primary' onClick={() => deleteUser(userss.id)}><Delete /></Button>
+                        {userss.data().Status === 0 ? (
+                          <Button size='small' variant='contained' style={{ background: 'green', color: 'white' }} onClick={() => activeUser(userss.id)}><ToggleOn /></Button>
                         ) : (
-                          <Button size='small' variant='contained' style={{ background: 'maroon', color: 'white' }} color='primary' onClick={() => deactiveU(userss.id)}><ToggleOff /></Button>
+                          <Button size='small' variant='contained' style={{ background: 'maroon', color: 'white' }} color='primary' onClick={() => deactiveUser(userss.id)}><ToggleOff /></Button>
                         )}
-
                       </ButtonGroup>
                     </TableCell>
                   </TableRow>
                 ))}
-
               </TableBody>
             </Table>
           </TableContainer>
-
-
         </Grid>
       </Grid>
-
-
-    </div>
-  )
+    </>
+  );
 }
 export default Userlist;
