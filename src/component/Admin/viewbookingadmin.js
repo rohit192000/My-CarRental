@@ -1,93 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import AdminNavbar from './adminNavbar';
+import AdminNavbar from './AdminNavbar';
 import { Grid, Typography } from '@material-ui/core';
-import { TableContainer, Table, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
+import { TableContainer, Table, TableBody, TableRow, TableCell, Button, Card, CardActionArea, CardContent, CardMedia, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 import { db } from '../../firebase';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
-
 import imgbackground from '../image/nee.jpg';
-
-
 const Viewbookingadmin = () => {
-
-  var queryString = window.location.search;
-  var urlparm = new URLSearchParams(queryString);
-  var id = urlparm.get('id');
-  console.log(id);
-
-
-  const [users, setUsers] = useState([]);
-  // const [userss, setUserss] = useState([]);
-
-  const booking = db.collection("booking");
-
-
-  // for checking if user chooses self-drive or driver.
-  const [MyDriver, setMyDriver] = useState('');
-
-  // const [alldates, setalldates] = useState([]);
-
-  function getUsers() {
-    booking.doc(id).get().then((doc) => {
-      const item = [];
-      const items = [];
-      setMyDriver(doc.data().Driver);
-      if (doc.data().Status === 'yes') {
-        console.log(doc);
-        setdriverss(false);
-        items.push(doc);
-      }
-      // setalldates(doc.data().Booked_Dates);
-      // querySnapshot.forEach((doc) =>{
-      // console.log(doc.data().RegDate.toDate().toDateString());
-      item.push(doc);
-
-      // console.log(doc.data().DriverName);
-      // if(doc.data().DriverName == '' || doc.data().DriverName == null)
-      // {
-      // setdriverss(true);
-      // document.getElementById('assigndriver').style.display = 'block';
-      // document.getElementById('showassigndriver').style.display = 'none';
-      //   console.log('hii');
-      // }else
-      // {
-      // setdriverss(false);
-      // document.getElementById('assigndriver').style.display = 'none';
-      // document.getElementById('showassigndriver').style.display = 'block';
-      // console.log('boo');
-      // document.getElementById('dname').innerHTML = doc.data().DriverName;
-      // document.getElementById('dphone').innerHTML = doc.data().DriverPhone;
-      // document.getElementById('dage').innerHTML = doc.data().DriverAge;
-      // document.getElementById('demail').innerHTML = doc.data().DriverEmail;
-      // document.getElementById('dadhar').innerHTML = doc.data().DriverAadhar;
-      // document.getElementById('dlicense').innerHTML = doc.data().DriverLicense;
-      // document.getElementById('dimage').src = doc.data().DriverImage;
-      // console.log(doc.data().DriverImage);
-      // }
-
-
-
-      // })
-      setUsers(item);
-      // setUserss(items);
-    })
-
-  }
-
-
-  useEffect(() => {
-    getUsers();
-  });
-
-
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -97,23 +15,30 @@ const Viewbookingadmin = () => {
       marginTop: theme.spacing(2),
     },
   }));
-
   const classes = useStyles();
-
-  // function ViewDetail(x) {
-  //   window.location.href='';
-  // }
-
-
-
+  var queryString = window.location.search;
+  var urlparm = new URLSearchParams(queryString);
+  var id = urlparm.get('id');
+  const [users, setUsers] = useState([]);
+  const booking = db.collection("booking");
+  const [MyDriver, setMyDriver] = useState('');
+  const getUsers = () => {
+    booking.doc(id).get().then((doc) => {
+      const item = [];
+      const items = [];
+      setMyDriver(doc.data().Driver);
+      if (doc.data().Status === 'yes') {
+        setdriverss(false);
+        items.push(doc);
+      }
+      item.push(doc);
+      setUsers(item);
+    })
+  }
   const [driverss, setdriverss] = useState(true);
-
-  // variable to get the details of driver
   const [driver, setDriver] = useState([]);
-
   const adddriver = db.collection("adddriver");
-
-  function getDriver() {
+  const getDriver = () => {
     adddriver.onSnapshot((querySnapshot) => {
       const item = [];
       querySnapshot.forEach((doc) => {
@@ -122,36 +47,22 @@ const Viewbookingadmin = () => {
       setDriver(item);// assigning driver data to the driver variable
     })
   }
-
   const [drvlst, setDrvlst] = useState('');
   const handleChange = (event) => {
     setDrvlst(event.target.value);
-    // setdriverss(false);
   };
-
-  function assigndriver() {
+  const assigndriver = () => {
     var driverid = drvlst;
-
-    // alldates
-
-// if else check
-
     adddriver.doc(driverid).get().then(function (dcc) {
-
       console.log(dcc.data().Booked_Dates);
-
-      if(dcc.data().Booked_Dates){
+      if (dcc.data().Booked_Dates) {
         console.log('yes');
-      }else{
+      } else {
         console.log('no');
       }
-
-      adddriver.where('Booked_Dates','array-contains-any',dcc.data().Booked_Dates).where('Phone','==',dcc.data().Phone).get().then((suc) =>{
+      adddriver.where('Booked_Dates', 'array-contains-any', dcc.data().Booked_Dates).where('Phone', '==', dcc.data().Phone).get().then((suc) => {
         console.log(suc.size);
-        // if(suc.size)
       })
-
-
       booking.doc(id).update({
         DriverName: dcc.data().Name,
         DriverAge: dcc.data().Age,
@@ -172,40 +83,24 @@ const Viewbookingadmin = () => {
       })
     })
   }
-
   useEffect(() => {
+    getUsers();
     getDriver();
-  });
-
-
-
-
-
+  }, []);
   return (
-    <div>
-
+    <>
       <AdminNavbar />
-
-
-
       <img style={{ height: '99vh', width: '100%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', filter: 'blur(10px)', position: 'fixed', zIndex: '-1' }} src={imgbackground} alt="" />
-
       <Grid container style={{ marginTop: '0px' }}>
         <Typography variant="h4" style={{ fontFamily: 'gabriola', backgroundColor: 'rgb(36, 86, 166)', color: 'white', height: '35px', width: '100%', textAlign: 'center' }}> My Bookings</Typography>
         <Grid item xs={1}> </Grid>
-
         <Grid item xs={6} style={{ paddingTop: '0%' }}>
-
-
           <CardContent>
-
             <Card>
               <CardActionArea>
-
                 {
                   users.map((userss) => (
                     <CardContent key={userss.id}>
-
                       <CardMedia image={userss.data().carImage} style={{ height: '290px' }}>
                         {/* <img style={{width:'100%'}} src={userss.data().Image} />  */}
                       </CardMedia>
@@ -225,29 +120,18 @@ const Viewbookingadmin = () => {
                       <Typography variant="body2" color="default" component="p"><b>Pick Date:</b> {userss.data().PickDate}</Typography>
                       <Typography variant="body2" color="default" component="p"><b>Pick Location:</b> {userss.data().PickLocation}</Typography>
                       <Typography variant="body2" color="default" component="p"><b>Driver Required:</b> {userss.data().Driver}</Typography>
-
-                      {/* <Typography variant="body2" color="default" component="p"><b>Registration Date:</b> {userss.data().RegDate.toDate().toDateString()}</Typography> */}
-                      {/* <Typography variant="body2" color="textSecondary" component="p">Name: {userss.data().Name}</Typography> */}
-
                     </CardContent>
                   ))
                 }
-
               </CardActionArea>
             </Card>
           </CardContent>
-
         </Grid>
         <Grid item xs={4}>
           <CardContent>
-
             {MyDriver !== 'selfdrive' && (
               <>
-
-
-
                 {driverss ? (
-
                   <Card id='assigndriver'>
                     <CardContent>
                       <Typography variant='h6'>Assign Driver</Typography>
@@ -273,45 +157,42 @@ const Viewbookingadmin = () => {
                   <Card id='showassigndriver'>
                     <CardContent>
                       <Typography variant='h6'>View Driver</Typography>
-
                       <img id='dimage' style={{ width: '50%', marginLeft: '25%', borderRadius: '50%' }} alt='' />
-
                       {users.map((drivers) => (
                         <TableContainer>
-
                           <Table style={{ backgroundColor: 'white' }} key={drivers.id}>
                             <TableBody>
                               <TableRow>
                                 <TableCell>Driver Image</TableCell>
-                                <TableCell><span id='dimage'><img name="image" src={drivers.data().DriverImage} style={{ height: '90px' }} alt='' /></span></TableCell>
+                                <TableCell><img name="image" src={drivers.data().DriverImage} style={{ height: '90px' }} alt='' /></TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Name</TableCell>
-                                <TableCell><span id='dname'>{drivers.data().DriverName}</span></TableCell>
+                                <TableCell>{drivers.data().DriverName}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Phone</TableCell>
-                                <TableCell><span id='dphone'>{drivers.data().DriverPhone}</span></TableCell>
+                                <TableCell>{drivers.data().DriverPhone}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Age</TableCell>
-                                <TableCell><span id='dage'>{drivers.data().DriverAge}</span></TableCell>
+                                <TableCell>{drivers.data().DriverAge}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Email</TableCell>
-                                <TableCell><span id='demail'>{drivers.data().DriverEmail}</span></TableCell>
+                                <TableCell>{drivers.data().DriverEmail}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver License</TableCell>
-                                <TableCell><span id='dlicense'>{drivers.data().DriverLicense}</span></TableCell>
+                                <TableCell>{drivers.data().DriverLicense}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Aadhar</TableCell>
-                                <TableCell><span id='dadhar'>{drivers.data().DriverAadhar}</span></TableCell>
+                                <TableCell>{drivers.data().DriverAadhar}</TableCell>
                               </TableRow>
                               <TableRow>
                                 <TableCell>Driver Gender</TableCell>
-                                <TableCell><span id='dadhar'>{drivers.data().DriverGender}</span></TableCell>
+                                <TableCell>{drivers.data().DriverGender}</TableCell>
                               </TableRow>
                             </TableBody>
                           </Table>
@@ -322,15 +203,10 @@ const Viewbookingadmin = () => {
                 )}
               </>
             )}
-
-
           </CardContent>
         </Grid>
       </Grid>
-
-
-
-    </div>
+    </>
   )
 }
 export default Viewbookingadmin;

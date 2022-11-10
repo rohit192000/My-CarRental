@@ -2,30 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Paper, Grid, CardContent, Button, TextField, Typography } from '@material-ui/core';
 import { db } from '../../firebase';
 import firebase from 'firebase';
-
 import imgbackground from '../image/ccw.jpg';
-import { useNavigate } from 'react-router';
-
-
-
+import { useNavigate } from 'react-router-dom';
 const Adminlogin = () => {
-
-  // const [users, setUsers] = useState([]);
-
   const adminlogin = db.collection("Admin");
-
   function getUsers() {
     adminlogin.onSnapshot((querySnapshot) => {
       const item = [];
       querySnapshot.forEach((doc) => {
         item.push(doc);
       })
-      // setUsers(item);
     })
   }
-
-
-
   useEffect(() => {
     getUsers();
   });
@@ -36,9 +24,7 @@ const Adminlogin = () => {
     var data = new FormData(e.currentTarget);
     let email = data.get('emailid');
     let password = data.get('passwordid');
-
     adminlogin.where("Email", "==", email).where("Password", "==", password).get().then(function (querySnapshot) {
-
       querySnapshot.forEach(function (docc) {
         if (docc.exists) {
           console.log(docc.data().Phone);
@@ -46,7 +32,6 @@ const Adminlogin = () => {
           var appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
           firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
             .then((confirmationResult) => {
-              // console.log('yes');
               setOTPData(confirmationResult);
               localStorage.setItem('Phone', phoneNumber);
               localStorage.setItem('UID', docc.id);
@@ -55,10 +40,6 @@ const Adminlogin = () => {
             }).catch((errror) => {
               console.log('no');
             });
-          // var uid = docc.id;
-          // localStorage.setItem('token', uid);
-          //   window.location.href='./dashboard';
-          // alert('yes');
         } else {
           alert('Wrong Email and Password');
         }
@@ -71,21 +52,16 @@ const Adminlogin = () => {
     var data = new FormData(e.currentTarget);
     var OTP = data.get('verify_otp');
     OTPData.confirm(OTP).then((result) => {
-      alert("Correct Otp");
       var uid = localStorage.getItem('UID');
       localStorage.setItem('token', uid);
       navi('/dashboard');
-      alert('yes');
       e.target.reset();
     }).catch((error) => {
       alert("Incorrect Otp");
     })
-
-
   }
   return (
     <div className="App">
-
       <Paper >
         <img style={{ height: '99vh', width: '100%', filter: 'blur(15px)' }} src={imgbackground} alt="" />
         <Grid container style={{ position: 'absolute', top: '22vh' }}>

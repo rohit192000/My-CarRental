@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminNavbar from './adminNavbar';
+import AdminNavbar from './AdminNavbar';
 import { Paper, Button, Grid, Typography, ButtonGroup } from '@material-ui/core';
 import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from '@material-ui/core';
 import { db } from '../../firebase';

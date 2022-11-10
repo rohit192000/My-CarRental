@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from './AdminNavbar';
-import { Grid, Typography, Button, CardContent, TextField, Container, Card, TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
+import { Grid, Typography, Button, CardContent, TextField, Container, Card, TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@mui/material';
 import { db } from '../../firebase';
 import DeleteIcon from '@material-ui/icons/Delete';
 import imgbackground from '../image/nee.jpg';
@@ -37,7 +37,7 @@ const Category = () => {
     }
   }
   const deleteCategory = (x) => {
-    category.doc(x).delete();
+    db.collection('category').doc(x).delete();
   }
   return (
     <>

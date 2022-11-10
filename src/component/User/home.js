@@ -10,7 +10,6 @@ import bg2 from '../image/b2.jpg';
 import img13 from '../image/abooo.jpg';
 import img14 from '../image/range.jpg';
 import img15 from '../image/b5.jpg';
-
 import InstagramIcon from '@material-ui/icons/Instagram';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -36,7 +35,7 @@ const Home = () => {
     var path = useNavigate();
     const classes = useStyles();
 
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
 
     const [hatch, getHatch] = useState([]);
