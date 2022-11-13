@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AdminNavbar from './AdminNavbar';
 import { Grid, Typography, Button, CardContent, TextField, Container, Card, TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@mui/material';
 import { db } from '../../firebase';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 import imgbackground from '../image/nee.jpg';
 const Category = () => {
   const [category, setCategory] = useState([]);

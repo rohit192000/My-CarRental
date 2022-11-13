@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Button } from '@mui/material';
+import { makeStyles } from '@mui/material/styles';
 import Usernavbar from './usernavbar';
 import { useNavigate } from 'react-router-dom';
-import { Container, Paper, Grid, Box} from '@material-ui/core';
+import { Container, Paper, Grid, Box} from '@mui/material';
 import { db } from '../../firebase';
 
 import bg2 from '../image/b2.jpg';
 import img13 from '../image/abooo.jpg';
 import img14 from '../image/range.jpg';
 import img15 from '../image/b5.jpg';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import AlarmOnOutlinedIcon from '@material-ui/icons/AlarmOnOutlined';
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
-import PersonIcon from '@material-ui/icons/Person';
-import ChildFriendlyIcon from '@material-ui/icons/ChildFriendly';
-import PhoneIphoneOutlinedIcon from '@material-ui/icons/PhoneIphoneOutlined';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import AlarmOnOutlinedIcon from '@mui/icons-material/AlarmOnOutlined';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import PersonIcon from '@mui/icons-material/Person';
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
+import BeenhereIcon from '@mui/icons-material/Beenhere';
 
 
 const useStyles = makeStyles((theme) => ({

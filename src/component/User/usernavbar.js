@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Button, Link } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, Link } from '@mui/material';
 import { useNavigate } from 'react-router';
 const Usernavbar = () => {
     var navi = useNavigate();

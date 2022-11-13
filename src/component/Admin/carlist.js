@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from './AdminNavbar';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 import { Paper, Grid, Select, InputLabel, MenuItem, FormControl, Typography, Button, Modal, CardContent, TextField, TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from '@mui/material';
 import firebase from 'firebase';
 import { db, storageref } from '../../firebase';

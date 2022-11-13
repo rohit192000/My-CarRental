@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Paper, Grid, Typography} from '@material-ui/core';
-import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
+import {Paper, Grid, Typography} from '@mui/material';
+import {TableContainer, Table, TableBody, TableHead, TableRow, TableCell} from '@mui/material';
 
 
 import imgbackground from '../image/nee.jpg';

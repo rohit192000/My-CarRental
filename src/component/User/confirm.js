@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Usernavbar from './usernavbar';
-import {Typography, Button, Paper, Grid, Card, CardContent} from '@material-ui/core';
+import {Typography, Button, Paper, Grid, Card, CardContent} from '@mui/material';
 import image1 from '../image/nee.jpg';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import {useNavigate} from 'react-router-dom';
 const Confirm =() =>{
 var path=useNavigate();

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Button } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
+import { Typography, Button } from '@mui/material';
+// import { makeStyles } from '@mui/material/styles';
 import Usernavbar from './usernavbar';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import { Grid, Box, Card, CardContent, CardActions, CardActionArea, CardMedia, TextField } from '@material-ui/core';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { Grid, Box, Card, CardContent, CardActions, CardActionArea, CardMedia, TextField } from '@mui/material';
 
 
 const Carsearch = () => {
