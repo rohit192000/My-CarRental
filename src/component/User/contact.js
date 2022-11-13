@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Paper, Grid, Card, CardActions, CardContent, Button, TextField, Typography} from '@mui/material';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { db } from '../../firebase';
 
 import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@mui/material';

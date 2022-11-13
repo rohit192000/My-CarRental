@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AdminNavbar from './AdminNavbar';
 import { Grid, Typography, TableContainer, Table, TableBody, TableRow, TableCell, Button, Card, CardActionArea, CardContent, CardMedia, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import { db } from '../../firebase';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import imgbackground from '../image/nee.jpg';
 const Viewbookingadmin = () => {
   const useStyles = makeStyles((theme) => ({

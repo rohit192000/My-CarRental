@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import {BrowserRouter as useNavigate} from 'react-router-dom';
 import { Button, ButtonGroup, CardContent, } from '@mui/material';
 import {AppBar, Typography, Toolbar, Grid } from '@mui/material';

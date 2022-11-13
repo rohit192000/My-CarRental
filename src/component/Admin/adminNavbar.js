@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
-import { makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { Drawer, Link, AppBar, Toolbar, List, Typography, Divider, ListItemButton, ListItemText, ListItemIcon, IconButton } from '@mui/material';
 import { Domain, Home, AirlineSeatReclineNormal, People, Bookmark, PowerSettingsNew, DriveEta, PermContactCalendar, Menu } from '@mui/icons-material';
 const AdminNavbar = () => {
