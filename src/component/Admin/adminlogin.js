@@ -19,7 +19,7 @@ const Adminlogin = () => {
   });
   const [OTPData, setOTPData] = useState();
   const [otp, setCheckOTP] = useState(false);
-  function Submitlogin(e) {
+  const Submitlogin = (e) => {
     e.preventDefault();
     var data = new FormData(e.currentTarget);
     let email = data.get('emailid');
