@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/material/styles';
 import imgbackground from '../image/carbg2.jpg';
 import { db } from '../../firebase';
 import Usernavbar from './usernavbar';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
